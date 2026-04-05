@@ -11,12 +11,12 @@ export default function Sidebar({ tab, setTab, isOpen, setIsOpen }) {
   return (
     <>
       {/* Sidebar */}
-      <aside className={`fixed left-0 z-40 top-16 bottom-0 w-full md:w-80 md:min-w-[20rem] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out ${
+      <aside className={`fixed left-0 z-40 top-0 md:top-16 bottom-0 w-full md:w-80 md:min-w-[20rem] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="flex flex-col h-full">
           {/* Navigation */}
-          <nav className="flex-1 p-4 pt-5">
+          <nav className="flex-1 p-4 md:mt-0 mt-16">
             <ul className="space-y-3">
               {tabs.map(t => (
                 <li key={t.k}>

@@ -1,16 +1,24 @@
+
 import React, { useState, useEffect, useContext } from 'react';
 
 const AuthCtx = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-  // For now, let's just simulate a login
-  const login = () => setUser({ name: 'Guest' });
-  const logout = () => setUser(null);
+  const login = () => {
+    // In a real app, this would involve a call to an authentication service
+    setUser({ name: 'Guest' });
+    setIsLoginModalOpen(false); // Close the modal on login
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
 
   return (
-    <AuthCtx.Provider value={{ user, login, logout }}>
+    <AuthCtx.Provider value={{ user, login, logout, isLoginModalOpen, setIsLoginModalOpen }}>
       {children}
     </AuthCtx.Provider>
   );

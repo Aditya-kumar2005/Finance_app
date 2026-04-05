@@ -14,7 +14,7 @@ import Toasts from './components/Toasts';
 
 function App() {
   const [tab, setTab] = useState('dashboard');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default to open on desktop
 
   return (
     <TxnProvider>
@@ -35,7 +35,7 @@ function App() {
                 <Sidebar tab={tab} setTab={setTab} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
 
                 {/* Main Content */}
-                <main className={`flex-1 flex justify-center pb-16 pt-6 md:pb-0 md:pt-8 transition-all duration-300`}>
+                <main className={`flex-1 flex justify-center pb-16 pt-6 md:pb-0 md:pt-8 transition-all duration-300 ${isSidebarOpen ? 'md:ml-80' : ''}`}>
                   <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
                     {/* Read-Only Banner */}
                     <RoBanner />

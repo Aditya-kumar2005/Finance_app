@@ -8,9 +8,8 @@ import LoginModal from './LoginModal';
 export default function Header({ tab, setTab, setIsSidebarOpen }) {
   const { dark, flip } = useTheme();
   const { disp } = useTxn();
-  const { user, logout } = useAuth();
+  const { user, logout, isLoginModalOpen, setIsLoginModalOpen } = useAuth(); // Updated to use useAuth
   const [search, setSearch] = useState('');
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -20,7 +19,7 @@ export default function Header({ tab, setTab, setIsSidebarOpen }) {
   const tabs = [
     { k: 'dashboard', l: 'Dashboard', icon: 'fa-chart-line' },
     { k: 'transactions', l: 'Transactions', icon: 'fa-exchange-alt' },
-    { k: 'insights', l: 'Insights', icon: 'fa-lightbulb' }
+    { k: 'insights', l: 'Insights', icon: 'fa-lightbulb' },
   ];
 
   return (
@@ -29,8 +28,8 @@ export default function Header({ tab, setTab, setIsSidebarOpen }) {
         <div className="flex items-center gap-3">
           {/* Sidebar Toggle Button */}
           <button
-            onClick={() => setIsSidebarOpen(prev => !prev)}
-            className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors md:hidden"
+            onClick={() => setIsSidebarOpen((prev) => !prev)}
+            className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
             aria-label="Toggle sidebar"
           >
             <i className="fa-solid fa-bars text-sm" />
@@ -56,10 +55,10 @@ export default function Header({ tab, setTab, setIsSidebarOpen }) {
             />
           </div>
         </div>
-        
+
         {/* Laptop/Desktop Tabs */}
         <div className="hidden md:flex items-center gap-6">
-          {tabs.map(t => (
+          {tabs.map((t) => (
             <button
               key={t.k}
               onClick={() => setTab(t.k)}
@@ -69,7 +68,7 @@ export default function Header({ tab, setTab, setIsSidebarOpen }) {
                   : 'text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400'
               }`}
             >
-              <i className={`fa-solid ${t.icon} text-lg`}/>
+              <i className={`fa-solid ${t.icon} text-lg`} />
               <span className="text-sm font-medium">{t.l}</span>
             </button>
           ))}
@@ -87,7 +86,7 @@ export default function Header({ tab, setTab, setIsSidebarOpen }) {
             </button>
           ) : (
             <button
-              onClick={() => setIsLoginModalOpen(true)}
+              onClick={() => setIsLoginModalOpen(true)} // Updated to use setIsLoginModalOpen from useAuth
               className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
               aria-label="Login"
             >
@@ -101,11 +100,11 @@ export default function Header({ tab, setTab, setIsSidebarOpen }) {
             className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
             aria-label="Toggle theme"
           >
-            <i className={`fa-solid ${dark ? 'fa-sun' : 'fa-moon'} text-sm`} />
+            <i className={`fa-solid ${dark ? 'fa-sun' : 'fa-moon'}`} />
           </button>
         </div>
       </div>
-      {isLoginModalOpen && <LoginModal setIsOpen={setIsLoginModalOpen} />}
+      {isLoginModalOpen && <LoginModal setIsOpen={setIsLoginModalOpen} />} 
     </header>
   );
 }
