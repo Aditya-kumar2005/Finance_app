@@ -2,7 +2,8 @@ import React from 'react'
 import { useTxn } from './useTxn';
 import { fmtDate,fmtCurE } from './Utilites';
 import { CatIcon } from './CatIcon';
-export default function Recent() {
+
+export default function Recent({go}) {
   const{st}=useTxn();
     const list=React.useMemo(()=>[...st.txns].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5),[st.txns]);
     if(!list.length) return <div className="cd text-center py-8 text-slate-400 text-sm">No transactions yet</div>;

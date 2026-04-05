@@ -35,8 +35,12 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   overflow-x: hidden;
   background: #f8fafc;
   color: var(--text-light-primary);
@@ -50,7 +54,7 @@ body.dark,
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 600;
 }
 
@@ -125,6 +129,9 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   font-family: inherit;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .dark .ntab {
@@ -216,9 +223,12 @@ h1, h2, h3, h4, h5, h6 {
   animation: fu 0.4s ease both;
 }
 
+.st > *:nth-child(1) { animation-delay: 0ms; }
 .st > *:nth-child(2) { animation-delay: 60ms; }
 .st > *:nth-child(3) { animation-delay: 120ms; }
 .st > *:nth-child(4) { animation-delay: 180ms; }
+.st > *:nth-child(5) { animation-delay: 240ms; }
+.st > *:nth-child(6) { animation-delay: 300ms; }
 
 /* ==================== MODALS ==================== */
 .mbg {
@@ -366,6 +376,22 @@ select {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* ==================== RESPONSIVE IMPROVEMENTS ==================== */
+@media (max-width: 640px) {
+  .cd {
+    padding: 16px;
+  }
+  
+  .ntab {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .st > * {
+    animation: fu 0.3s ease both;
+  }
 }
 
 /* ==================== REDUCED MOTION ==================== */
