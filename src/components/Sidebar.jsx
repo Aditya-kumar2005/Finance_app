@@ -1,8 +1,7 @@
+
 import React from 'react';
-import { useTheme } from '../providers/ThemeProvider';
 
 export default function Sidebar({ tab, setTab, isOpen, setIsOpen }) {
-  const { dark } = useTheme();
   const tabs = [
     { k: 'dashboard', l: 'Dashboard', icon: 'fa-chart-line' },
     { k: 'transactions', l: 'Transactions', icon: 'fa-exchange-alt' },
@@ -15,24 +14,7 @@ export default function Sidebar({ tab, setTab, isOpen, setIsOpen }) {
       <aside className={`fixed left-0 z-40 top-16 bottom-0 w-full md:w-80 md:min-w-[20rem] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
-        <div className="flex flex-col h-full md:h-full">
-          {/* Sidebar Header */}
-          <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-linear-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                <i className="fa-solid fa-vault text-white text-sm"/>
-              </div>
-              <span className="font-heading font-bold text-lg tracking-tight">FinVault</span>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="md:hidden w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors"
-              aria-label="Close sidebar"
-            >
-              <i className="fa-solid fa-times text-sm"/>
-            </button>
-          </div>
-
+        <div className="flex flex-col h-full">
           {/* Navigation */}
           <nav className="flex-1 p-4 pt-5">
             <ul className="space-y-3">

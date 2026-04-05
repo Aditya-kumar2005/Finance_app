@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { TxnProvider } from './providers/TxnProvider';
 import { RoleProvider } from './providers/RoleProvider';
@@ -13,7 +14,7 @@ import Toasts from './components/Toasts';
 
 function App() {
   const [tab, setTab] = useState('dashboard');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <TxnProvider>
@@ -27,15 +28,15 @@ function App() {
               <div className="orb o3"></div>
 
               {/* Header */}
-              <Header tab={tab} setTab={setTab} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+              <Header setIsSidebarOpen={setIsSidebarOpen} />
 
               {/* Sidebar and Main Content */}
               <div className="relative flex-1">
                 <Sidebar tab={tab} setTab={setTab} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
 
                 {/* Main Content */}
-                <main className="flex-1 flex justify-center pb-16 pt-6 md:pb-0 md:pt-8">
-                  <div className={`w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10 ${isSidebarOpen ? 'md:ml-80' : 'md:ml-0'}`}>
+                <main className={`flex-1 flex justify-center pb-16 pt-6 md:pb-0 md:pt-8 transition-all duration-300 ${isSidebarOpen ? 'md:ml-80' : 'md:ml-0'}`}>
+                  <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
                     {/* Read-Only Banner */}
                     <RoBanner />
 
