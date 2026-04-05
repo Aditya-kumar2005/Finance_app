@@ -34,8 +34,8 @@ function App() {
                 <Sidebar tab={tab} setTab={setTab} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
 
                 {/* Main Content */}
-                <main className="flex-1 flex justify-center pb-16 md:pb-0">
-                  <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
+                <main className="flex-1 flex justify-center pb-16 pt-6 md:pb-0 md:pt-8">
+                  <div className={`w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10 ${isSidebarOpen ? 'md:ml-80' : 'md:ml-0'}`}>
                     {/* Read-Only Banner */}
                     <RoBanner />
 

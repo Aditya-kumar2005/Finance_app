@@ -12,10 +12,10 @@ export default function Sidebar({ tab, setTab, isOpen, setIsOpen }) {
   return (
     <>
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out ${
+      <aside className={`fixed left-0 z-40 top-16 bottom-0 w-full md:w-80 md:min-w-[20rem] bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full md:h-full">
           {/* Sidebar Header */}
           <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-3">
@@ -34,20 +34,20 @@ export default function Sidebar({ tab, setTab, isOpen, setIsOpen }) {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 p-4">
-            <ul className="space-y-2">
+          <nav className="flex-1 p-4 pt-5">
+            <ul className="space-y-3">
               {tabs.map(t => (
                 <li key={t.k}>
                   <button
                     onClick={() => setTab(t.k)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-left transition-colors ${
                       tab === t.k
-                        ? 'bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300'
-                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
+                        ? 'bg-emerald-100 dark:bg-emerald-900/50 text-emerald-900 dark:text-emerald-200 shadow-sm'
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
                     }`}
                   >
-                    <i className={`fa-solid ${t.icon} text-sm`}/>
-                    <span className="font-medium">{t.l}</span>
+                    <i className={`fa-solid ${t.icon} text-base ${tab === t.k ? 'text-emerald-700 dark:text-emerald-200' : 'text-slate-500 dark:text-slate-400'}`}/>
+                    <span className="font-medium text-sm">{t.l}</span>
                   </button>
                 </li>
               ))}
@@ -79,7 +79,7 @@ export default function Sidebar({ tab, setTab, isOpen, setIsOpen }) {
       {/* Overlay for mobile */}
       {isOpen && (
         <div
-          className="md:hidden fixed inset-0 z-30 bg-black bg-opacity-50"
+          className="md:hidden fixed inset-x-0 top-16 bottom-0 z-30 bg-black bg-opacity-50"
           onClick={() => setIsOpen(false)}
         />
       )}
