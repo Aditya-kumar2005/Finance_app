@@ -4,6 +4,7 @@ import { RoleProvider } from './providers/RoleProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { ToastProvider } from './providers/ToastProvider';
 import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import RoBanner from './components/RoBanner';
 import DashTab from './components/DashTab';
 import TxnTab from './components/TxnTab';
@@ -12,7 +13,8 @@ import Toasts from './components/Toasts';
 
 function App() {
   const [tab, setTab] = useState('dashboard');
-  
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   return (
     <TxnProvider>
       <RoleProvider>
@@ -23,20 +25,28 @@ function App() {
               <div className="orb o1"></div>
               <div className="orb o2"></div>
               <div className="orb o3"></div>
-              
+
               {/* Header */}
-              <Header tab={tab} setTab={setTab} />
-              
-              {/* Read-Only Banner */}
-              <RoBanner />
-              
-              {/* Main Content */}
-              <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6 relative z-10 flex-1">
-                {tab === 'dashboard' && <DashTab go={setTab} />}
-                {tab === 'transactions' && <TxnTab />}
-                {tab === 'insights' && <InsTab />}
-              </main>
-              
+              <Header tab={tab} setTab={setTab} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+
+              {/* Sidebar and Main Content */}
+              <div className="relative flex-1">
+                <Sidebar tab={tab} setTab={setTab} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+
+                {/* Main Content */}
+                <main className="flex-1 flex justify-center pb-16 md:pb-0">
+                  <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
+                    {/* Read-Only Banner */}
+                    <RoBanner />
+
+                    {/* Tab Content */}
+                    {tab === 'dashboard' && <DashTab go={setTab} />}
+                    {tab === 'transactions' && <TxnTab />}
+                    {tab === 'insights' && <InsTab />}
+                  </div>
+                </main>
+              </div>
+
               {/* Toasts */}
               <Toasts />
             </div>

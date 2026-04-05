@@ -3,7 +3,7 @@ import { useRole } from '../providers/RoleProvider';
 import { useTheme } from '../providers/ThemeProvider';
 import {useToast} from '../providers/ToastProvider'
 
-export default function Header({tab,setTab}) {
+export default function Header({tab,setTab, isSidebarOpen, setIsSidebarOpen}) {
   const{role,setRole,isAdmin}=useRole();
     const{dark,flip}=useTheme();
     const{add}=useToast();
@@ -20,12 +20,19 @@ export default function Header({tab,setTab}) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            className="md:flex hidden w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800/60 items-center justify-center text-slate-500 dark:text-slate-400 hover:text-emerald-500 dark:hover:text-emerald-400 transition-colors cursor-pointer border-none"
+                            aria-label="Toggle sidebar"
+                        >
+                            <i className={`fa-solid ${isSidebarOpen ? 'fa-bars-staggered' : 'fa-bars'} text-sm`}/>
+                        </button>
                         <div className="w-9 h-9 rounded-xl bg-linear-to-br from-emerald-400 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
                             <i className="fa-solid fa-vault text-white text-sm"/>
                         </div>
                         <span className="font-heading font-bold text-xl tracking-tight">FinVault</span>
                     </div>
-                    <Nav cls="hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 rounded-xl p-1"/>
+                    <Nav cls={`hidden md:flex items-center gap-1 bg-slate-100 dark:bg-slate-800/60 rounded-xl p-1 ${isSidebarOpen ? 'md:hidden' : ''}`}/>
                     <div className="flex items-center gap-2 sm:gap-3">
                         <select value={role} onChange={e=>{setRole(e.target.value);add('Switched to '+(e.target.value==='admin'?'Admin':'Viewer')+' mode','info');}} aria-label="Select role" className="inp text-xs py-2 pr-8 font-medium cursor-pointer">
                             <option value="admin">Admin</option><option value="viewer">Viewer</option>
