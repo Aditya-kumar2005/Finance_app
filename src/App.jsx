@@ -9,7 +9,6 @@ import DashTab from './components/DashTab';
 import TxnTab from './components/TxnTab';
 import InsTab from './components/InsTab';
 import Toasts from './components/Toasts';
-import './App.css'
 
 function App() {
   const[tab,setTab]=useState('dashboard');

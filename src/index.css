@@ -1,6 +1,4 @@
-
-@tailwind utilities;
-@import "tailwindcss/preflight";
+@import "tailwindcss";
 
 /* ==================== THEME VARIABLES ==================== */
 :root {
